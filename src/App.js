@@ -1,23 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react';
+
+import ToDoList from "./components/ToDoList";
+import LogForm from  "./components/LogForm";
+import Welcome from './components/Welcome'
+
+import {MdOutlineLightMode, MdOutlineDarkMode} from 'react-icons/md'
+
 
 function App() {
+  const user = useSelector((state) => state.toDoList.user);
+
+  const [mode, setMode] = useState('light')
+
+  useEffect(() => {
+    // Add listener to update styles
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => setMode(e.matches ? 'dark' : 'light'));
+
+    // Setup dark/light mode for the first time
+    setMode(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+
+    // Remove listener
+    return () => {
+      window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', () => {
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (mode === "dark") {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [mode])
+
+  const switchMode = () => setMode((state) => {
+    if(state === "dark") return "light"
+    else return "dark" 
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='min-h-screen flex items-center flex-col bg-slate-50 dark:bg-gray-500 text-gray-700 dark:text-gray-100 pt-10'> 
+      <button 
+        className='absolute right-5 top-5  text-4xl dark:text-yellow-300' 
+        onClick={switchMode}>
+          {mode === "light" ? <MdOutlineDarkMode/> :  <MdOutlineLightMode/> }
+      </button>
+      {user ?  <ToDoList/> : <div> <Welcome/> <LogForm/> </div> }
     </div>
   );
 }
