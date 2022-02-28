@@ -41,9 +41,9 @@ function App() {
   })
 
   return (
-    <div className='min-h-screen flex items-center flex-col bg-slate-50 dark:bg-gray-500 text-gray-700 dark:text-gray-100 pt-10'> 
+    <div className='w-full min-h-screen flex items-center flex-col bg-slate-50 dark:bg-gray-500 text-gray-700 dark:text-gray-100 pt-10'> 
       <button 
-        className='absolute right-5 top-5  text-4xl dark:text-yellow-300' 
+        className='absolute right-5 top-5 text-4xl dark:text-yellow-300' 
         onClick={switchMode}>
           {mode === "light" ? <MdOutlineDarkMode/> :  <MdOutlineLightMode/> }
       </button>

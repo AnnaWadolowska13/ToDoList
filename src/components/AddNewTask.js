@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTask } from "./toDoListSlice"
 
@@ -21,12 +21,15 @@ function AddNewTask(){
         e.preventDefault();
         e.stopPropagation();
     }
-    const onAddButtonClick = () => {
-        dispatch(addTask(taskTitle));
-        setTaskTitle("");
-        showModal();
-    }
+    const onFormSubmit = () => {
+        console.log("submit")
+        if(taskTitle){
+            dispatch(addTask(taskTitle));
+            setTaskTitle("");
+            showModal();
+        }
 
+    }
     return (
         <section>
             <button 
@@ -39,7 +42,8 @@ function AddNewTask(){
                 className={modalDisplay ? " bg-gray-rgba dark:bg-dark-gray-rgba fixed top-0 left-0 right-0 bottom-0 z-10 flex justify-center items-center" : "hidden"}> 
                 <form 
                     onClick={onStopPropagation}
-                    className="w-1/2 max-w-2xl h-auto md:h-48 bg-gray-200 dark:bg-gray-600 p-3 rounded">
+                    onSubmit={onFormSubmit}
+                    className="w-6/12 max-w-2xl h-auto md:h-48 bg-gray-200 dark:bg-gray-600 p-3 rounded">
                     <h2 className="text-2xl mb-4">Add Task to List</h2>
                     <input 
                         type="text" 
@@ -55,8 +59,8 @@ function AddNewTask(){
                                 X
                             </button>
                             <button
-                                type="button"
-                                onClick={onAddButtonClick}
+                            onClick={onFormSubmit}
+                                type="submit"
                                 className="rounded-xl text-white bg-blue-700 p-3 mb-4 md:mb-0 w-fit">
                                 Add Task
                             </button>
