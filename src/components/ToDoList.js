@@ -27,7 +27,7 @@ function ToDoList(){
 
     return(
         <section>
-            <div className="w-fit md:w-[36rem] m-2">
+            <div className="w-fit md:w-[44rem] m-2">
                 <h2 className="font-bold text-2xl text-center mb-4">To Do List </h2>
                 {error 
                     ? <Error message={error}/> 

@@ -27,7 +27,7 @@ function Task({task}){
             {task.title}
             {/* <input value={task.id} className="absolute right-2 top-1/3" type="checkbox" checked={task.completed} onChange={onClickCompleted}/> */}
             <div className='absolute right-1 top-1 text-xl' id={task.id}>
-                <span onClick={onClickTrash} className='inline-block'> <BiTrashAlt/> </span>
+                <span onClick={onClickTrash} className='inline-block mr-1'> <BiTrashAlt/> </span>
                 {task.completed 
                     ? <span onClick={onClickCompleted} className='inline-block'><RiCheckboxLine/> </span>
                     : <span onClick={onClickCompleted} className='inline-block'> <RiCheckboxBlankLine/> </span>}            
