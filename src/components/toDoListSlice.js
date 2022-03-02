@@ -27,8 +27,13 @@ const toDoListSlice = createSlice({
         taskCompleted: (state, action) => {
             const value  = action.payload;
             const index = state.toDoList.findIndex(task => task.id.toString() === value);
-            // console.log(index)
-            state.toDoList[index].completed = !state.toDoList[index].completed
+            // console.log(value, "value")
+            state.toDoList[index].completed = !state.toDoList[index].completed;
+        },
+        taskDelete: (state, action) => {
+            const value  = action.payload;
+            const newList = state.toDoList.filter(task => task.id.toString() !== value);
+            state.toDoList = newList;
         },
         showFilter:(state, action) => {
             state.show = action.payload;
@@ -66,6 +71,6 @@ const toDoListSlice = createSlice({
     }
 })
 
-export const { userLogin, taskCompleted, userLogOut, showFilter, addTask } = toDoListSlice.actions;
+export const { userLogin, taskCompleted, userLogOut, showFilter, addTask, taskDelete } = toDoListSlice.actions;
 
 export default toDoListSlice.reducer;

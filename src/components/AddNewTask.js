@@ -8,10 +8,12 @@ function AddNewTask(){
 
     const [modalDisplay, setModalDisplay] = useState(false);
     const [taskTitle, setTaskTitle] = useState("");
+    const [taskError, setTaskError] = useState(false);
 
     const showModal = () => { setModalDisplay(modalDisplay => !modalDisplay)}
 
     const onTitleChange = e => setTaskTitle(e.target.value);
+
     const onExitClick = () => {
         setTaskTitle("");
         showModal();
@@ -27,6 +29,10 @@ function AddNewTask(){
             dispatch(addTask(taskTitle));
             setTaskTitle("");
             showModal();
+            setTaskError(false)
+        }
+        else{
+            setTaskError(true)
         }
 
     }
@@ -39,32 +45,34 @@ function AddNewTask(){
             </button>
             <div 
                 onClick={onExitClick}
-                className={modalDisplay ? " bg-gray-rgba dark:bg-dark-gray-rgba fixed top-0 left-0 right-0 bottom-0 z-10 flex justify-center items-center" : "hidden"}> 
+                className={modalDisplay ? " bg-gray-rgba dark:bg-dark-gray-rgba fixed inset-0 z-10 flex justify-center items-center" : "hidden"}> 
                 <form 
                     onClick={onStopPropagation}
                     onSubmit={onFormSubmit}
-                    className="w-6/12 max-w-2xl h-auto md:h-48 bg-gray-200 dark:bg-gray-600 p-3 rounded">
+                    className="w-6/12 max-w-2xl h-auto md:h-52 bg-gray-200 dark:bg-gray-600 p-3 rounded">
                     <h2 className="text-2xl mb-4">Add Task to List</h2>
                     <input 
                         type="text" 
                         value={taskTitle} 
                         name="taskTitle"
+                        required
                         onChange={onTitleChange}
-                        className="shadow border rounded w-full py-2 px-3 mb-4 dark:bg-slate-500"/>
-                        <div className="flex flex-col-reverse md:flex-row justify-between">
-                            <button 
-                                type="button" 
-                                onClick={onExitClick}
-                                className="bg-red-500 hover:bg-red-600 text-white font-bold rounded-xl h-12 w-12">
-                                X
-                            </button>
-                            <button
-                            onClick={onFormSubmit}
-                                type="submit"
-                                className="rounded-xl text-white bg-blue-700 p-3 mb-4 md:mb-0 w-fit">
-                                Add Task
-                            </button>
-                        </div>
+                        className="shadow border rounded w-full py-2 px-3 mb-2 dark:bg-slate-500"/>
+                    {taskError && <p className="text-sm absolute text-red-500"> Filed is required</p>}
+                    <div className="flex flex-col-reverse md:flex-row justify-between mt-6">
+                        <button 
+                            type="button" 
+                            onClick={onExitClick}
+                            className="bg-red-500 hover:bg-red-600 text-white font-bold rounded-xl h-12 w-12">
+                            X
+                        </button>
+                        <button
+                        onClick={onFormSubmit}
+                            type="submit"
+                            className="rounded-xl text-white bg-blue-700 p-3 mb-4 md:mb-0 w-fit">
+                            Add Task
+                        </button>
+                    </div>
 
                 </form>
             </div>

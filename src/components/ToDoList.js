@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-import { fetchList, userLogOut } from "./toDoListSlice";
+import { userLogOut } from "./toDoListSlice";
 
 import Error from "./Error";
 import Task from './Task'
@@ -24,9 +24,6 @@ function ToDoList(){
     const taskList = filteredList.map((task) => <Task key={task.id} task={task}/>);
     const onLogOutCliked = () => dispatch(userLogOut())
 
-    useEffect(() =>{
-        dispatch(fetchList());
-    }, [dispatch]);
 
     return(
         <section>

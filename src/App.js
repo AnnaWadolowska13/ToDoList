@@ -1,14 +1,19 @@
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { fetchList } from './components/toDoListSlice';
 
 import ToDoList from "./components/ToDoList";
 import LogForm from  "./components/LogForm";
 import Welcome from './components/Welcome'
 
-import {MdOutlineLightMode, MdOutlineDarkMode} from 'react-icons/md'
+import { MdOutlineLightMode, MdOutlineDarkMode } from 'react-icons/md'
+
 
 
 function App() {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.toDoList.user);
 
   const [mode, setMode] = useState('light')
@@ -34,6 +39,10 @@ function App() {
       document.documentElement.classList.remove('dark')
     }
   }, [mode])
+
+  useEffect(() =>{
+    dispatch(fetchList());
+}, [dispatch]);
 
   const switchMode = () => setMode((state) => {
     if(state === "dark") return "light"
