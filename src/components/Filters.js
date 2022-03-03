@@ -2,6 +2,8 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { showFilter } from "./toDoListSlice"
 
+import { VISIBILITY_FILTERS } from "../constants";
+
 function Filters(){
     const dispatch = useDispatch();
 
@@ -14,10 +16,7 @@ function Filters(){
                 id="selectFilter" 
                 onChange={onSelectChange} 
                 className="border rounded p-1 mb-2 dark:bg-slate-500">
-                    
-                <option value="all">All</option>
-                <option value="completed">Completed</option>
-                <option value="uncompleted">Uncompleted</option>
+                {Object.values(VISIBILITY_FILTERS).map((filter) => <option key={filter} value={filter}> {filter} </option>) }
             </select>
         </div>
     )

@@ -16,7 +16,7 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.toDoList.user);
 
-  const [mode, setMode] = useState('light')
+  const [mode, setMode] = useState('light');
 
   useEffect(() => {
     // Add listener to update styles
@@ -57,6 +57,7 @@ function App() {
           {mode === "light" ? <MdOutlineDarkMode/> :  <MdOutlineLightMode/> }
       </button>
       {user ?  <ToDoList/> : <div> <Welcome/> <LogForm/> </div> }
+      
     </div>
   );
 }

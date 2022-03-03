@@ -1,16 +1,19 @@
 import { createSlice, createAsyncThunk, nanoid } from "@reduxjs/toolkit";
 import axios from "axios";
 
+import { VISIBILITY_FILTERS } from "../constants";
+
 const initialState = {
     toDoList: [],
     status: "idle",
     error: null,
     user: '',
-    show: 'all'
+    show: VISIBILITY_FILTERS.ALL
 }
 
 export const fetchList = createAsyncThunk('toDoList/fetchList', async () => {
     const response = await axios.get('https://jsonplaceholder.typicode.com/todos');
+    // const response = await axios.get('https://jsonplaceholder.typicode.com/todos1');
     return response.data
 })
 

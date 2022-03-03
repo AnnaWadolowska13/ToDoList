@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
 import { userLogOut } from "./toDoListSlice";
+import { VISIBILITY_FILTERS } from "../constants";
 
 import Error from "./Error";
 import Task from './Task'
@@ -16,8 +17,8 @@ function ToDoList(){
     const filter = useSelector((state) => state.toDoList.show);
 
     const filteredList = list.filter( (task) => {
-        if(filter === 'completed') return task.completed === true
-        if(filter === 'uncompleted') return task.completed === false
+        if(filter === VISIBILITY_FILTERS.COMPLETED) return task.completed === true
+        if(filter === VISIBILITY_FILTERS.UNCOMPLETED) return task.completed === false
         return true
     })
 
