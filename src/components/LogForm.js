@@ -7,8 +7,8 @@ function LogForm(){
     const [userId, setUserId] = useState("");
     const dispatch = useDispatch();
 
-    const onChangeUserId = event => setUserId(event.target.value);
-    const onSubmitClick = () =>{
+    const handleChangeUserId = event => setUserId(event.target.value);
+    const handleSubmitClick = () =>{
         dispatch(userLogin(userId));
     }
 
@@ -22,10 +22,10 @@ function LogForm(){
                     name="userId"
                     id="userId"
                     value={userId}
-                    onChange={onChangeUserId} />
+                    onChange={handleChangeUserId} />
                     <button 
                         type="button" 
-                        onClick={onSubmitClick} 
+                        onClick={handleSubmitClick} 
                         className="bg-blue-500 hover:bg-blue-600 text-gray-100 font-bold p-3 rounded"
                         > 
                         Submit 

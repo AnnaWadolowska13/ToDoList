@@ -8,14 +8,14 @@ import { BiTrashAlt } from "react-icons/bi"
 function Task({task}){
     const dispatch = useDispatch();
 
-    const onClickCompleted = event =>{
+    const handleClickCompleted = event =>{
         // console.log(event.target);
         let value = event.currentTarget.parentNode.id;
         // console.log(event.currentTarget)
         dispatch(taskCompleted(value));
     }
 
-    const onClickTrash = event => {
+    const handleClickTrash = event => {
         let value = event.currentTarget.parentNode.id;
         dispatch(taskDelete(value));
     }
@@ -27,14 +27,15 @@ function Task({task}){
             {task.title}
             {/* <input value={task.id} className="absolute right-2 top-1/3" type="checkbox" checked={task.completed} onChange={onClickCompleted}/> */}
             <div className='absolute right-1 top-1 text-xl' id={task.id}>
-                <span onClick={onClickTrash} className='inline-block mr-1'> <BiTrashAlt/> </span>
-                {task.completed 
-                    ? <span onClick={onClickCompleted} className='inline-block'><RiCheckboxLine/> </span>
-                    : <span onClick={onClickCompleted} className='inline-block'> <RiCheckboxBlankLine/> </span>}            
+                <span onClick={handleClickTrash} className='inline-block mr-1'> <BiTrashAlt/> </span>
+                <span onClick={handleClickCompleted} className='inline-block'> {task.completed ? <RiCheckboxLine/> : <RiCheckboxBlankLine/>} </span>
+                {/* // {task.completed 
+                    ? <span onClick={handleClickCompleted} className='inline-block'><RiCheckboxLine/> </span>
+                    : <span onClick={handleClickCompleted} className='inline-block'> <RiCheckboxBlankLine/> </span>}             */}
             </div>
 
         </li>
     )
-}
+} 
 
 export default Task;
