@@ -40,7 +40,8 @@ const toDoListSlice = createSlice({
                 console.log(action.payload)
                 state.toDoList.push({
                     ...action.payload,
-                    userId: state.user
+                    userId: state.user,
+                    completed: false
                 });
             },
             prepare(title, user){

@@ -3,42 +3,37 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
 import { userLogOut } from "../slices/toDoListSlice";
-import { VISIBILITY_FILTERS } from "../constants";
 
 import Error from "./Error";
-import Task from './Task'
 import Nav from "./Nav";
+import OneColumnView from "./OneColView";
+import TwoColView from "./TwoColView";
 
 function ToDoList(){
     const dispatch = useDispatch();
-    const user = useSelector((state) => (state.toDoList.user));
-    const list = useSelector((state) => state.toDoList.toDoList.filter((task) => task.userId.toString() === user ))
     const error = useSelector((state) => state.toDoList.error);
-    const filter = useSelector((state) => state.filters.show);
+    const columns = useSelector((state) => state.filters.columns);
     
+    let taskView;
 
-    const filteredList = list.filter( (task) => {
-        if(filter === VISIBILITY_FILTERS.COMPLETED) return task.completed === true
-        if(filter === VISIBILITY_FILTERS.UNCOMPLETED) return task.completed === false
-        return true
-    })
-
-    const taskList = filteredList.map((task) => <Task key={task.id} task={task}/>);
+    if(columns === "1"){
+        taskView = <OneColumnView/>;
+    } else if(columns === "2"){
+        taskView = <TwoColView/>
+    }
     const onLogOutCliked = () => dispatch(userLogOut())
-
 
     return(
         <section>
-            <div className="w-fit md:w-[44rem] m-2">
-                <h2 className="font-bold text-2xl text-center mb-4">To Do List </h2>
+            <div className="w-fit md:w-[44rem] lg:w-[60rem] m-2">
+                <h2 className="font-bold text-2xl text-center mb-4">Your To-Do List </h2>
                 {error 
                     ? <Error message={error}/> 
                     : 
                         <div className="relative">
                             <Nav/>
-                            <ul>{taskList}</ul>
+                            {taskView}
                         </div>}
-                {!error && !taskList.length && <p> Empty list </p>}
                 <button 
                     onClick={onLogOutCliked}
                     className="bg-red-500 hover:bg-red-600 text-white font-bold p-3 rounded mt-2"

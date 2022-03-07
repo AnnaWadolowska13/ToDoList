@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { VISIBILITY_FILTERS } from "../constants";
 
 const initialState = {
-    columns: 1,
+    columns: "1",
     show: VISIBILITY_FILTERS.ALL
 }
 

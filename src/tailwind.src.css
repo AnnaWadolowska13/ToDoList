@@ -1,11 +1,3 @@
 @tailwind base;
-
-@layer base {
-    html{
-        @apply box-border
-    }
-}
-
 @tailwind components;
-
 @tailwind utilities;
