@@ -15,10 +15,10 @@ function LogForm(){
     return(
         <div className="w-48 mx-auto my-10"> 
             <form className="p-3 shadow-md bg-slate-100 dark:bg-slate-700">
-                <label className="block text-sm font-bold mb-2" htmlFor="userId">Enter UserId</label>
+                <label className="block text-sm font-bold mb-2" htmlFor="userId">Enter User Name</label>
                 <input 
                     className="shadow border rounded w-full py-2 px-3 mb-2 dark:bg-slate-500"
-                    type="number" 
+                    type="text" 
                     name="userId"
                     id="userId"
                     value={userId}

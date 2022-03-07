@@ -15,6 +15,7 @@ function ToDoList(){
     const list = useSelector((state) => state.toDoList.toDoList.filter((task) => task.userId.toString() === user ))
     const error = useSelector((state) => state.toDoList.error);
     const filter = useSelector((state) => state.toDoList.show);
+    
 
     const filteredList = list.filter( (task) => {
         if(filter === VISIBILITY_FILTERS.COMPLETED) return task.completed === true
@@ -40,7 +41,7 @@ function ToDoList(){
                 {!error && !taskList.length && <p> Empty list </p>}
                 <button 
                     onClick={onLogOutCliked}
-                    className="bg-red-500 hover:bg-red-600 text-white font-bold p-3 rounded"
+                    className="bg-red-500 hover:bg-red-600 text-white font-bold p-3 rounded mt-2"
                     >Log Out</button>
             </div>            
         </section>
