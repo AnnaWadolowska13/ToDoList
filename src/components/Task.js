@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { taskCompleted, taskDelete } from './toDoListSlice'
+import { taskCompleted, taskDelete } from '../slices/toDoListSlice'
 
 import { RiCheckboxBlankLine, RiCheckboxLine } from "react-icons/ri"
 import { BiTrashAlt } from "react-icons/bi"

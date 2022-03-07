@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { showFilter } from "./toDoListSlice"
+import { showFilter } from "../slices/filtersSlice"
 
 import { VISIBILITY_FILTERS } from "../constants";
 

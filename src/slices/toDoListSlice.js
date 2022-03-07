@@ -1,14 +1,11 @@
 import { createSlice, createAsyncThunk, nanoid } from "@reduxjs/toolkit";
 import axios from "axios";
 
-import { VISIBILITY_FILTERS } from "../constants";
-
 const initialState = {
     toDoList: [],
     status: "idle",
     error: null,
     user: '',
-    show: VISIBILITY_FILTERS.ALL
 }
 
 export const fetchList = createAsyncThunk('toDoList/fetchList', async () => {
@@ -37,9 +34,6 @@ const toDoListSlice = createSlice({
             const value  = action.payload;
             const newList = state.toDoList.filter(task => task.id.toString() !== value);
             state.toDoList = newList;
-        },
-        showFilter:(state, action) => {
-            state.show = action.payload;
         },
         addTask: {
             reducer(state, action){

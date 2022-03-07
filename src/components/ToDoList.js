@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-import { userLogOut } from "./toDoListSlice";
+import { userLogOut } from "../slices/toDoListSlice";
 import { VISIBILITY_FILTERS } from "../constants";
 
 import Error from "./Error";
@@ -14,7 +14,7 @@ function ToDoList(){
     const user = useSelector((state) => (state.toDoList.user));
     const list = useSelector((state) => state.toDoList.toDoList.filter((task) => task.userId.toString() === user ))
     const error = useSelector((state) => state.toDoList.error);
-    const filter = useSelector((state) => state.toDoList.show);
+    const filter = useSelector((state) => state.filters.show);
     
 
     const filteredList = list.filter( (task) => {

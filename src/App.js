@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { fetchList } from './components/toDoListSlice';
+import { fetchList } from './slices/toDoListSlice';
 
 import ToDoList from "./components/ToDoList";
 import LogForm from  "./components/LogForm";

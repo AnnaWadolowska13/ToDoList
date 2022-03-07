@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { userLogin } from './toDoListSlice'
+import { userLogin } from '../slices/toDoListSlice'
 
 function LogForm(){
     const [userId, setUserId] = useState("");
