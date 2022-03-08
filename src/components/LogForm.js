@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { userLogin } from '../slices/toDoListSlice'
 
 function LogForm(){
+    let navigate = useNavigate();
     const [userId, setUserId] = useState("");
     const dispatch = useDispatch();
 
     const handleChangeUserId = event => setUserId(event.target.value);
     const handleSubmitClick = () =>{
         dispatch(userLogin(userId));
+        navigate("/todo");
     }
 
     return(

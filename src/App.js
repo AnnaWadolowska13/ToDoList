@@ -9,6 +9,7 @@ import LogForm from  "./components/LogForm";
 import Welcome from './components/Welcome'
 
 import { MdOutlineLightMode, MdOutlineDarkMode } from 'react-icons/md'
+import { Link, Outlet } from 'react-router-dom';
 
 
 
@@ -56,8 +57,8 @@ function App() {
         onClick={switchMode}>
           {mode === "light" ? <MdOutlineDarkMode/> :  <MdOutlineLightMode/> }
       </button>
-      {user ?  <ToDoList/> : <div> <Welcome/> <LogForm/> </div> }
-      
+      {/* {user ?  <ToDoList/> : <div> <Welcome/> <LogForm/> </div> } */}
+      <Outlet/>
     </div>
   );
 }

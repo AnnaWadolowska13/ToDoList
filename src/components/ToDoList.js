@@ -9,9 +9,12 @@ import Error from "./Error";
 import Nav from "./Nav";
 import OneColumnView from "./OneColView";
 import TwoColView from "./TwoColView";
+import { useNavigate } from "react-router-dom";
 
 function ToDoList(){
     const dispatch = useDispatch();
+    let navigate = useNavigate();
+    const user = useSelector((state) => state.toDoList.user);
     const error = useSelector((state) => state.toDoList.error);
     const columns = useSelector((state) => state.filters.columns);
     
@@ -25,7 +28,21 @@ function ToDoList(){
     const onLogOutCliked = () => {
         dispatch(userLogOut());
         dispatch(resetFilters());
+        navigate("/");
+    }
 
+    if(!user){
+        return (
+            <div>
+                <p> You are not logged in </p>
+                <button
+                    onClick={()=> navigate("/")}
+                    className="bg-blue-500 hover:bg-blue-600 text-gray-100 font-bold p-3 rounded">
+                        Go to LogIn Page
+                </button>
+            </div>
+            
+        )
     }
 
     return(

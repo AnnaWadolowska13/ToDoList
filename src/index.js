@@ -5,13 +5,24 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from "./store.js"
 import { Provider } from 'react-redux';
+import { BrowserRouter,Route, Routes } from "react-router-dom";
+import Welcome from './components/Welcome';
+import LogForm from './components/LogForm';
+import ToDoList from './components/ToDoList';
 
 
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <App/>
-    </React.StrictMode>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App/>}>
+        <Route index element={<><Welcome/> <LogForm/></>} />
+        <Route path="todo" element={<ToDoList/>} />
+      </Route>
+    </Routes>
+
+    </BrowserRouter>
+
   </Provider>,
   document.getElementById('root')
 );
