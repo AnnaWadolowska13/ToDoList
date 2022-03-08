@@ -1,21 +1,15 @@
-import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { fetchList } from './slices/toDoListSlice';
 
-import ToDoList from "./components/ToDoList";
-import LogForm from  "./components/LogForm";
-import Welcome from './components/Welcome'
-
 import { MdOutlineLightMode, MdOutlineDarkMode } from 'react-icons/md'
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 
 
 function App() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.toDoList.user);
 
   const [mode, setMode] = useState('light');
 
@@ -57,7 +51,6 @@ function App() {
         onClick={switchMode}>
           {mode === "light" ? <MdOutlineDarkMode/> :  <MdOutlineLightMode/> }
       </button>
-      {/* {user ?  <ToDoList/> : <div> <Welcome/> <LogForm/> </div> } */}
       <Outlet/>
     </div>
   );
