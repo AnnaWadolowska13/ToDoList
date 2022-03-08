@@ -16,10 +16,15 @@ const filtersSlice = createSlice({
         },
         showFilter:(state, action) => {
             state.show = action.payload;
+        },
+        resetFilters:(state, action) => {
+            state.columns = initialState.columns;
+            state.show = initialState.show;
+
         }
     }
 })
 
-export const { viewChanger, showFilter} = filtersSlice.actions;
+export const { viewChanger, showFilter, resetFilters} = filtersSlice.actions;
 
 export default filtersSlice.reducer;

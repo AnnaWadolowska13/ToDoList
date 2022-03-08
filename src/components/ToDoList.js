@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
 import { userLogOut } from "../slices/toDoListSlice";
+import { resetFilters } from "../slices/filtersSlice"
 
 import Error from "./Error";
 import Nav from "./Nav";
@@ -21,7 +22,11 @@ function ToDoList(){
     } else if(columns === "2"){
         taskView = <TwoColView/>
     }
-    const onLogOutCliked = () => dispatch(userLogOut())
+    const onLogOutCliked = () => {
+        dispatch(userLogOut());
+        dispatch(resetFilters());
+
+    }
 
     return(
         <section>
