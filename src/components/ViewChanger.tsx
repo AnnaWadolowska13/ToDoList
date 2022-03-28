@@ -2,11 +2,12 @@ import React from "react";
 import { useDispatch } from "react-redux";
 
 import {viewChanger} from "../slices/filtersSlice"
+import { AppDispatch } from "../store";
 
 function ViewChanger(){
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
-    const handleSelectChange = e => dispatch(viewChanger(e.target.value));
+    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement> )=> dispatch(viewChanger(e.target.value));
     return(
         <section>
             <label htmlFor="viewChanger">Change view to:</label>

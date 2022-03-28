@@ -3,11 +3,12 @@ import { useDispatch } from "react-redux";
 import { showFilter } from "../slices/filtersSlice"
 
 import { VISIBILITY_FILTERS } from "../constants";
+import { AppDispatch } from "../store";
 
 function Filters(){
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
-    const handleSelectChange = event => dispatch(showFilter(event.target.value));
+    const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => dispatch(showFilter(event.target.value));
 
     return (
         <div className="mb-2">

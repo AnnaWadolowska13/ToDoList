@@ -1,20 +1,25 @@
 import React, {useState} from "react";
 import { useDispatch } from "react-redux";
 import { addTask } from "../slices/toDoListSlice"
+import { AppDispatch } from "../store";
 
-function AddNewTaskModal({onExitModal}){
-    const dispatch = useDispatch();
+type ModalProps = {
+    onExitModal:()=>void,
+}
+
+function AddNewTaskModal({onExitModal}:ModalProps){
+    const dispatch = useDispatch<AppDispatch>();
     const [taskTitle, setTaskTitle] = useState("");
     const [taskError, setTaskError] = useState(false);
 
-    const handleTitleChange = e => setTaskTitle(e.target.value);
+    const handleTitleChange = (e:React.ChangeEvent<HTMLInputElement>) => setTaskTitle(e.target.value);
 
     const handleExitClick = () => {
         setTaskTitle("");
         onExitModal();
     }
     
-    const handleStopPropagation = e => {
+    const handleStopPropagation = (e:React.MouseEvent) => {
         //obsługuje i przycisk i klikniecie na zaciemnione tło
         e.preventDefault();
         e.stopPropagation();

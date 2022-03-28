@@ -39,6 +39,10 @@ function App() {
     dispatch(fetchList());
 }, [dispatch]);
 
+useEffect(() => {
+  document.title = "To Do App"
+}, []);
+
   const switchMode = () => setMode((state) => {
     if(state === "dark") return "light"
     else return "dark" 

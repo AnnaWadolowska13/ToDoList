@@ -17,7 +17,7 @@ const filtersSlice = createSlice({
         showFilter:(state, action) => {
             state.show = action.payload;
         },
-        resetFilters:(state, action) => {
+        resetFilters:(state) => {
             state.columns = initialState.columns;
             state.show = initialState.show;
 

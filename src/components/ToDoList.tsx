@@ -10,13 +10,14 @@ import Nav from "./Nav";
 import OneColumnView from "./OneColView";
 import TwoColView from "./TwoColView";
 import { useNavigate } from "react-router-dom";
+import { AppDispatch, RootState } from "../store";
 
 function ToDoList(){
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     let navigate = useNavigate();
-    const user = useSelector((state) => state.toDoList.user);
-    const error = useSelector((state) => state.toDoList.error);
-    const columns = useSelector((state) => state.filters.columns);
+    const user = useSelector((state:RootState) => state.toDoList.user);
+    const error = useSelector((state:RootState) => state.toDoList.error);
+    const columns = useSelector((state:RootState) => state.filters.columns);
     
     let taskView;
 

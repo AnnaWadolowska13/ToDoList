@@ -1,6 +1,10 @@
 import React from "react";
 
-function Error({message}){
+type ErrorProps = {
+    message: null | string
+}
+
+function Error({message}:ErrorProps){
     return(
         <div className="text-red-400 text-xl">
             {message}

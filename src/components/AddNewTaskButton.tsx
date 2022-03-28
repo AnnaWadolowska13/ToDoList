@@ -1,8 +1,12 @@
 import React from "react";
 
-function AddNewTaskButton(props){
+type NewTaskButton = {
+    onAddButtonClick:()=>void
+}
 
-    function handleButtonClick(event){
+function AddNewTaskButton(props:NewTaskButton){
+
+    function handleButtonClick(event:React.MouseEvent){
         event.preventDefault();
         // console.log("click", props);
         props.onAddButtonClick();
