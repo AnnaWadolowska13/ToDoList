@@ -40,11 +40,21 @@ const toDoListSlice = createSlice({
         userLogOut: (state:RootState) => {
             state.user = "";
         },
-        taskCompleted: (state:RootState, action:PayloadAction<string>) => {
-            const value  = action.payload;
-            const index = state.toDoList.findIndex((task:TaskType) => task.id.toString() === value);
-            // console.log(value, "value")
+        taskCompletedClick:(state:RootState, action) =>{
+            const taskId  = action.payload;
+            const index = state.toDoList.findIndex((task:TaskType) => task.id.toString() === taskId);
             state.toDoList[index].completed = !state.toDoList[index].completed;
+        },
+        taskDragAndDrop: (state:RootState, action) => {
+            const taskId = action.payload.id;
+            const actionType = action.payload.actionType;
+            const index = state.toDoList.findIndex((task:TaskType) => task.id.toString() === taskId);
+            if(actionType === "dragUnCompleted"){
+                state.toDoList[index].completed = false;
+            }
+            else if(actionType === "dragCompleted"){
+                state.toDoList[index].completed = true;
+            }
         },
         taskDelete: (state:RootState, action:PayloadAction<string>) => {
             const value  = action.payload;
@@ -76,6 +86,6 @@ const toDoListSlice = createSlice({
     }
 })
 
-export const { userLogin, taskCompleted, userLogOut, addTask, taskDelete } = toDoListSlice.actions;
+export const { userLogin, taskDragAndDrop, userLogOut, addTask, taskDelete, taskCompletedClick } = toDoListSlice.actions;
 
 export default toDoListSlice.reducer;

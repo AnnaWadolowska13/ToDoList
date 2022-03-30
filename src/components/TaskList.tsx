@@ -4,7 +4,8 @@ import Task from "./Task";
 
 function TaskList(props:{taskList: Array<TaskType>}){
     function taskListMap(taskList:Array<TaskType>){
-        return taskList.map((task: TaskType) => <Task key={task.id} task={task}/>)
+        return taskList.map((task: TaskType) => 
+            <Task key={task.id} task={task}/>)
     }
     return(
         <>
