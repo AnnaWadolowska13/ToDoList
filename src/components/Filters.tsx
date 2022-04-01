@@ -12,7 +12,7 @@ function Filters(){
 
     return (
         <div className="mb-2">
-            <label htmlFor="selectFilter"> Show: </label>
+            <label htmlFor="selectFilter" className="block sm:inline"> Show: </label>
             <select 
                 id="selectFilter" 
                 onChange={handleSelectChange} 

@@ -24,9 +24,9 @@ function TwoColView(){
 
     }
     return(
-        <div className="flex flex-row">
+        <div className="sm:flex sm:flex-row">
             <div 
-                className="mr-1 w-1/2 uncompleted"
+                className="w-full sm:mr-1 sm:w-1/2 uncompleted"
                 onDragOver={(e)=>onDragOver(e)}
                 onDrop={(e)=>{onDrop(e, "dragUnCompleted")}}
             >
@@ -34,7 +34,7 @@ function TwoColView(){
                 <TaskList taskList={unCompletedTaskList} />
             </div>
             <div  
-                className="w-1/2 completed"
+                className="w-full sm:w-1/2 completed"
                 onDragOver={(e)=>onDragOver(e)}
                 onDrop={(e)=>{onDrop(e, "dragCompleted")}}
             >
