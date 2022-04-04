@@ -5,9 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { store } from './store';
 import { Provider } from 'react-redux';
-import { BrowserRouter,Route, Routes } from "react-router-dom";
-import Welcome from './components/Welcome';
-import LogForm from './components/LogForm';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import LoginPage from './components/LoginPage';
 import ToDoList from './components/ToDoList';
 
 
@@ -17,7 +17,7 @@ ReactDOM.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App/>}>
-            <Route index element={<><Welcome/> <LogForm/></>} />
+            <Route index element={<LoginPage/>} />
             <Route path="todo" element={<ToDoList/>} />
           </Route>
         </Routes>
