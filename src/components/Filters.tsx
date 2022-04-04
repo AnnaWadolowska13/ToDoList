@@ -18,7 +18,7 @@ function Filters(){
                 <button 
                     key={filter} 
                     value={filter}
-                    className={`${activeFilter===filter? "border-gray-100 border-b-2 my-0 " : "hover:my-0 hover:border-b-2 hover:border-gray-700"} mx-2 my-2 cursor-pointer`}
+                    className={`${activeFilter===filter? "border-gray-100 border-b-2 my-0 cursor-default" : "hover:my-0 hover:border-b-2 hover:border-gray-700 cursor-pointer"} mx-2 my-2 `}
                     onClick={handleFiltrChange}
                 > 
                     {filter.charAt(0).toUpperCase() + filter.slice(1)} 
