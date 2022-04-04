@@ -1,26 +1,34 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { showFilter } from "../slices/filtersSlice"
 
 import { VISIBILITY_FILTERS } from "../constants";
-import { AppDispatch } from "../store";
+import { AppDispatch, RootState } from "../store";
 
 function Filters(){
     const dispatch = useDispatch<AppDispatch>();
-
-    const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => dispatch(showFilter(event.target.value));
+    const activeFilter = useSelector((state:RootState) => state.filters.show);
+    const handleFiltrChange = (event:any) =>  dispatch(showFilter(event.target.value));
+    
 
     return (
         <div className="mb-2">
-            <label htmlFor="selectFilter" className="block sm:inline"> Show: </label>
-            <select 
-                id="selectFilter" 
-                onChange={handleSelectChange} 
-                className="border rounded p-1 mb-2 dark:bg-slate-500">
-                {Object.values(VISIBILITY_FILTERS).map((filter) => <option key={filter} value={filter}> {filter} </option>) }
-            </select>
+            <span> Show: </span>
+            {Object.values(VISIBILITY_FILTERS).map((filter) => 
+                <button 
+                    key={filter} 
+                    value={filter}
+                    className={`${activeFilter===filter? "border-gray-100 border-b-2 my-0 " : "hover:my-0 hover:border-b-2 hover:border-gray-700"} mx-2 my-2 cursor-pointer`}
+                    onClick={handleFiltrChange}
+                > 
+                    {filter.charAt(0).toUpperCase() + filter.slice(1)} 
+                </button>) 
+            }
+
         </div>
     )
 }
 
 export default Filters;
+
+// mx-2 my-1 hover:my-0 hover:border-b-2 hover:border-gray-700 cursor-pointer "
