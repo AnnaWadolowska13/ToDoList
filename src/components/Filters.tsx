@@ -1,4 +1,4 @@
-import React, { MouseEvent } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { showFilter } from "../slices/filtersSlice"
 
@@ -18,7 +18,10 @@ function Filters(){
                 <button 
                     key={filter} 
                     value={filter}
-                    className={`${activeFilter===filter? "border-gray-100 border-b-2 my-0 cursor-default" : "hover:my-0 hover:border-b-2 hover:border-gray-700 cursor-pointer"} mx-2 my-2 `}
+                    className={`${activeFilter===filter 
+                                ?"dark:border-gray-400 border-gray-400 border-b-2 my-0 cursor-default" 
+                                : "hover:my-0 hover:border-b-2 hover:border-gray-700 dark:hover:border-white cursor-pointer"}
+                                mx-2 my-2 `}
                     onClick={() => handleFiltrChange(filter)}
                 > 
                     {filter.charAt(0).toUpperCase() + filter.slice(1)} 
@@ -30,5 +33,3 @@ function Filters(){
 }
 
 export default Filters;
-
-// mx-2 my-1 hover:my-0 hover:border-b-2 hover:border-gray-700 cursor-pointer "
